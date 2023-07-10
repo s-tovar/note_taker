@@ -39,7 +39,7 @@ app.get('/notes', (req, res) => {
     });
   });
 
-//   attempt at delete notes with the id
+//   // attempt at delete notes with the id
 //   app.delete('/api/notes/:id', (req, res) => {
 //     const deleteId = req.params.id;
   
@@ -53,3 +53,12 @@ app.get('/notes', (req, res) => {
 //       });
 //     });
 //   });
+
+//route to send to index.html file 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+  });
+
+  app.listen(PORT, () => {
+    console.log(`App listening on PORT: ${PORT}`);
+  });
