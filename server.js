@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-// const { v4: uuidv4 } = require('uuid'); this generates unique ids for notes?
+const { v4: uuidv4 } = require('uuid'); //this generates unique ids for notes?
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,20 +39,20 @@ app.get('/notes', (req, res) => {
     });
   });
 
-//   // attempt at delete notes with the id
-//   app.delete('/api/notes/:id', (req, res) => {
-//     const deleteId = req.params.id;
+  // attempt at delete notes with the id
+  app.delete('/api/notes/:id', (req, res) => {
+    const deleteId = req.params.id;
   
-//     fs.readFile('./db/db.json', 'utf8', (err, data) => {
-//       if (err) throw err;
-//       let allNotes = JSON.parse(data);
-//       allNotes = allNotes.filter(note => note.id !== deleteId);  // Filter out the note with the specified id
-//       fs.writeFile('./db/db.json', JSON.stringify(allNotes, null, 2), (err) => {
-//         if (err) throw err;
-//         res.json(allNotes);
-//       });
-//     });
-//   });
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) throw err;
+      let allNotes = JSON.parse(data);
+      allNotes = allNotes.filter(note => note.id !== deleteId);  // Filter out the note with the specified id
+      fs.writeFile('./db/db.json', JSON.stringify(allNotes, null, 2), (err) => {
+        if (err) throw err;
+        res.json(allNotes);
+      });
+    });
+  });
 
 //route to send to index.html file 
 app.get('*', (req, res) => {
